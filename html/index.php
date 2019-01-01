@@ -19,7 +19,7 @@ function sendNewCommand() {
 <form> 
 Command: <input type="text" id="InputText">
 </form>
-<button type="button" onclick="sendNewCommand()">SendCommand</button>
+<button type="button" onclick="sendNewCommand()">Send Command</button>
 <p>Output: <span id="Output"></span></p>
 </body>
 </html>
