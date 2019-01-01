@@ -1,23 +1,26 @@
 <html>
-<p>htmltest</p>
+<head>
+<script>
+function sendNewCommand() {
+  var xmlhttp = new XMLHttpRequest();
+  var str = document.getElementById("InputText").value
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("Output").innerHTML = this.responseText;
+    }
+  };
+  xmlhttp.open("GET", "sql.php?q=" + str, true);
+  xmlhttp.send();
+}
+</script>
+</head>
+
+<body>
+<form> 
+Command: <input type="text" id="InputText">
+</form>
+<button type="button" onclick="sendNewCommand()">SendCommand</button>
+<p>Output: <span id="Output"></span></p>
+</body>
 </html>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "password";
-$dbname = "fridge";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-$sql = "INSERT INTO commands (date, time, command) values(CURRENT_DATE(), NOW(), 'phpCommand')";
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-$conn->close(i);
-echo phpinfo();
-?>
+
