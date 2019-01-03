@@ -32,7 +32,38 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script>
+    function sendNewCommand(command) {
+      var xmlhttp = new XMLHttpRequest();
+      //var str = document.getElementById("InputText").value
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("Output").innerHTML = this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "sql.php?q=" + command, true);
+      xmlhttp.send();
+    }
+    function sendCookCommand() {
+      sendNewCommand("cook");
+    }
+    function sendDispenseCommand() {
+      sendNewCommand("dispense");
+    }
+    function sendOpenDoorCommand() {
+      sendNewCommand("openDoor");
+    }
+    function sendCloseDoorCommand() {
+      sendNewCommand("closeDoor");
+    }
+    function sendDropCommand() {
+      sendNewCommand("drop");
+    }
+    function sendCustomCommand() {
+      var command = document.getElementById("CustomCommandText").value;
+      sendNewCommand(command);
+    }
+    </script>
 </head>
 
 <body>
@@ -63,25 +94,25 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Command List
                         </div>
-                        <div class="panel-body">]
+                        <div class="panel-body">
                             <p>
-                                <button type="button" class="btn btn-danger">Run</button>
-                                <button type="button" class="btn btn-warning">Dispense</button>
-                                <button type="button" class="btn btn-warning">Dispense</button>
-                                <button type="button" class="btn btn-warning">Dispense</button>
-                                <button type="button" class="btn btn-warning">Dispense</button>
+                                <button type="button" onclick="sendCookCommand()" class="btn btn-danger">Cook</button>
+                                <button type="button" onclick="sendDispenseCommand()" class="btn btn-warning">Dispense</button>
+                                <button type="button" onclick="sendOpenDoorCommand()" class="btn btn-warning">Open Door</button>
+                                <button type="button" onclick="sendCloseDoorCommand()" class="btn btn-warning">Close Door</button>
+                                <button type="button" onclick="sendDropCommand()" class="btn btn-warning">Drop Food</button>
                             </p>
                             <br>
                             <br>
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Custom Command...">
+                                <input type="text" class="form-control" placeholder="Custom Command..." id="CustomCommandText">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                                    <button class="btn btn-default" type="button" onclick="sendCustomCommand()">
                                         <i class="fa fa-check"></i>
                                     </button>
                                 </span>
