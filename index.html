@@ -62,6 +62,7 @@
     }
     function sendCustomCommand() {
       var command = document.getElementById("CustomCommandText").value;
+      document.getElementById("CustomCommandText").value = "";
       sendNewCommand(command);
     }
     </script>
