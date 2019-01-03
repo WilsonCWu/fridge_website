@@ -1,7 +1,7 @@
 <html>
 <head>
 <script>
-function sendNewCommand(var command) {
+function sendNewCommand(command) {
   var xmlhttp = new XMLHttpRequest();
   //var str = document.getElementById("InputText").value
   xmlhttp.onreadystatechange = function() {
