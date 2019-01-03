@@ -34,11 +34,12 @@
     <![endif]-->
     <script>
     function sendNewCommand(command) {
+      document.getElementById("Output").innerHTML = "Sending message...";
       var xmlhttp = new XMLHttpRequest();
       //var str = document.getElementById("InputText").value
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("Output").innerHTML = this.responseText;
+          document.getElementById("Output").innerHTML = command + " output: " + this.responseText;
         }
       };
       xmlhttp.open("GET", "sql.php?q=" + command, true);
@@ -108,7 +109,6 @@
                                 <button type="button" onclick="sendDropCommand()" class="btn btn-warning">Drop Food</button>
                             </p>
                             <br>
-                            <br>
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Custom Command..." id="CustomCommandText">
                                 <span class="input-group-btn">
@@ -118,6 +118,7 @@
                                 </span>
                             </div>
                             <br>
+                            <p>Output: <span id="Output"></span></p>
                         </div>
                         <!-- /.panel-body -->
                     </div>
