@@ -33,6 +33,18 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
+    function sendClearCommand() {
+      document.getElementById("Output").innerHTML = "Sending message...";
+      var xmlhttp = new XMLHttpRequest();
+      //var str = document.getElementById("InputText").value
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("Output").innerHTML = "'" + command + "' ran. " + this.responseText;
+        }
+      };
+      xmlhttp.open("GET", "resetSql.php", true);
+      xmlhttp.send();
+    }
     function sendNewCommand(command) {
       document.getElementById("Output").innerHTML = "Sending message...";
       var xmlhttp = new XMLHttpRequest();
@@ -107,6 +119,9 @@
                         <div class="panel-body text-center">
                             <p>
                                 <button type="button" onclick="sendRunCommand()" class="btn btn-primary btn-lg btn-block btn-danger">Run Full Sequence</button>
+                            </p>
+                            <p>
+                                <button type="button" onclick="sendClearCommand()" class="btn btn-primary btn-lg btn-block">Clear Queued Commands</button>
                             </p>
                             <p>
                                 <button type="button" onclick="sendCookCommand()" class="btn btn-primary btn-lg btn-block btn-warning">Cook</button>
