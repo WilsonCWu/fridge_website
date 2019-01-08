@@ -45,6 +45,9 @@
       xmlhttp.open("GET", "sql.php?q=" + command, true);
       xmlhttp.send();
     }
+    function sendRunCommand() {
+      sendNewCommand("run");
+    }
     function sendCookCommand() {
       sendNewCommand("cook");
     }
@@ -103,7 +106,10 @@
                         </div>
                         <div class="panel-body text-center">
                             <p>
-                                <button type="button" onclick="sendCookCommand()" class="btn btn-primary btn-lg btn-block btn-danger">Cook</button>
+                                <button type="button" onclick="sendRunCommand()" class="btn btn-primary btn-lg btn-block btn-danger">Run Full Sequence</button>
+                            </p>
+                            <p>
+                                <button type="button" onclick="sendCookCommand()" class="btn btn-primary btn-lg btn-block btn-warning">Cook</button>
                             </p>
                             <p>
                                 <button type="button" onclick="sendDispenseCommand()" class="btn btn-primary btn-lg btn-block btn-warning">Dispense</button>
